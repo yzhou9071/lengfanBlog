@@ -12,4 +12,4 @@ I'm a fresh man, and welcome criticism!
 
 + Name: Keen Zhou
 + Mail: yzhou9071@gmail.com yzhou9071@163.com
-+ Blog: [www.yzhou9071.com](www.yzhou9071.com)
++ Blog: www.yzhou9071.com
