@@ -1,0 +1,9 @@
+#!/bin/sh
+
+#django v1.7.4
+#python v2.7.6
+
+#create project
+django-admin.py startproject yzhou9071
+#create new apps
+python manage.py startapp keenblog

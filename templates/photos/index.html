@@ -1,0 +1,45 @@
+{% extends "photos/base.html" %}
+
+{% block title %} {{ block.super }}{% endblock%}
+
+{% block photoShow %}
+<div style="position:relative" id="photoHeader">
+	<img src="{{ STATIC_URL}}index_header_1.png" alt="冷饭博客" class="carousel-img-width">
+	<div class="photoShelter">
+		<h3>以梦为马，诗酒趁年华</h3>
+		<p>照片共计：{{ totalPhoto }}张。</p>
+		<p>我来过，只留下车辙与脚印，只带走回忆的照片。</p>
+		<p>经常回头看看，那是属于自己的那些年。</p>
+	</div>
+</div>
+</br>
+{% endblock %}
+
+{% block photoList %}
+<div class="row masonry-container rowPanel">
+	{% for photoItem in photoLists %}
+	<div class="col-md-3 col-sm-6 item">
+		<div class="thumbnail">
+			<img src="{{STATIC_URL}}photos/photo-{{photoItem.photoTime|date:"YmdHis" }}.jpg" alt="照片">
+			<div class="caption">
+				<p>{{ photoItem.photoDes }}</p>
+				<p>
+				<strong class="photoTimeFont">{{ photoItem.photoTime|date:"Y-m-d H:i:s"}}</strong>
+				<strong class="photoNormalFont">
+					<a>评论</a>
+				</strong>
+				</p>
+			</div>
+		</div>
+	</div>
+	{% endfor %}
+</div>
+<div class="photoShow">
+	<img class="photoBig" src=""/>
+	<img class="photoLeft" src="{{STATIC_URL}}left.png"/>
+	<img class="photoRight" src="{{STATIC_URL}}right.png"/>
+	<p><strong class="photoDesFont"></strong></p>
+	<div class="ds-thread" data-thread-key="photo_index_comment" data-title="骑迹足迹" data-url="http://www.yzhou9071.com/photos/">
+	</div>
+</div>
+{% endblock %}

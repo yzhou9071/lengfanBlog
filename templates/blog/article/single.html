@@ -1,0 +1,51 @@
+{% extends "blog/base.html" %}
+
+{% block title %}{{ article.title }}_{{ block.super }}{% endblock%}
+
+{% block blogCategory %}
+	<li><a href="/">首页（{{ totalNum }}）</a></li>
+{% for item in categories %}
+	<li><a href="{% url 'blog_category_archive' slug=item.slug %}">{{ item.title }}（{{ item.categoryID }}）</a></li>
+{% endfor %}
+{% endblock %}
+
+{% block blogShare %}
+<div class="ds-share flat" data-thread-key="article_share_{{ article.id }}" data-title="{{ article.title }}" data-content=" - {{ article.content_markdown|slice:"57"}}... （来自：@冷饭博客）" data-url="http://www.yzhou9071.com/blog/{{ article.slug }}/">
+	<div class="ds-share-aside-right">
+		<div class="ds-share-aside-inner">
+		</div>
+		<div class="ds-share-aside-toggle">分享到</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block blogContent %}
+<div class="row-fluid">
+	<div class="col-md-12">
+	<h3>
+		{{ article.title }}
+	</h3>
+	<p>
+	标签：{{ article.tags }}&nbsp;&nbsp;|&nbsp;&nbsp;分类：{{ categoryName }}&nbsp;&nbsp;
+	|&nbsp;&nbsp;发布时间：{{ article.publishTime|date:"Y-m-d H:m:s" }}&nbsp;&nbsp;|&nbsp;&nbsp;阅读量：{{ article.pv }}
+	</p>
+	<hr/>
+	{{ article.content_markup|safe }}
+	{% if previousArticle.slug != '' %}
+	<div class="mt10">
+	上一篇：<a href="{% url 'blog_article_single' slug=previousArticle.slug %}">{{ previousArticle.title }}</a>
+	</div>
+	{% endif %}
+	{% if nextArticle.slug != '' %}
+	<div class="mt10">
+	下一篇：<a href="{% url 'blog_article_single' slug=nextArticle.slug %}">{{ nextArticle.title }}</a>
+	</div>
+	{% endif %}
+	<hr/>
+</div>
+{% endblock %}
+
+{% block blogComment %}
+<div class="ds-thread" data-thread-key="article_comment_{{ article.id }}" data-title="{{ article.title}}" data-url="http://www.yzhou9071.com/blog/{{ article.slug }}/">
+</div>
+{% endblock %}

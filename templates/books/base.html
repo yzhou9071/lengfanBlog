@@ -1,0 +1,81 @@
+<!--
+ * author : Keen Zhou
+ * email  : yzhou9071@gmail.com
+ * Copyright (c) 2015 Keen Zhou All right reserved.
+-->
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8"/>
+		<title>{% block title %}我的藏书 - 冷饭博客{% endblock %}</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<meta name="author" content="KeenZhou"/>
+		<meta name="Keywords" content="冷饭博客"/>
+		<meta name="description" content="简介：冷饭博客"/>
+		<link href="{{ STATIC_URL }}favicon.ico" rel="shortcut icon">
+		<link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet">
+		<link href="{{ STATIC_URL }}css/bootstrap-theme.css" rel="stylesheet">
+		<link href="{{ STATIC_URL }}css/jquery.imagebox.css" rel="stylesheet">
+		<link href="{{ STATIC_URL }}css/stars.css" rel="stylesheet">
+		<link href="{{ STATIC_URL }}css/blog.css" rel="stylesheet">
+    </head>
+
+	<body>
+		<div class="blog">
+			<div class="navbar navbar-inverse navbar-fixed-top bs-docs-nav">
+				<div class="navbar-inner">
+					<div class="container">
+						<div class="navbar-header">
+							<button class="navbar-toggle" type="button" data-toggle="collapse"
+								data-target=".bs-navbar-collapse">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+							<a class="navbar-brand" href="/books"><font	class="blog-font-color">我的藏书</font></a>
+						</div>
+						<div class="collapse navbar-collapse bs-navbar-collapse">
+							<ul class="nav navbar-nav">
+								<li><a href="/"><font class="blog-font-color">冷饭博客</font></a></li>
+								<!--
+								<li><a href="/repos"><font class="blog-font-color">开源项目</font></a></li>
+								-->
+								<li><a href="/photos"><font class="blog-font-color">骑迹足迹</font></a></li>
+								<li><a href="/about"><font class="blog-font-color">关于冷饭</font></a></li>
+							</ul>
+							<!--
+							<form class="navbar-form pull-right">
+								<input id="query" type="text" class="input-medium search-query" />
+								<button id="search" class="btn">搜索</button>
+							</form>
+							-->
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="wrapper">
+				<div class="container contents">
+					{% block bookShow %} {% endblock %}
+					{% block bookContent %} {% endblock %}
+				</div>
+			</div>
+			<div class="goto_top" onclick="javascript:document.body.scrollTop=0;document.documentElement.scrollTop=0;return false;">
+				<i class="glyphicon glyphicon-plane"></i>
+			</div>
+			<div class="footer">
+				<p>
+				Copyright (c) 2015 <a href="/about"><font class="blog-font-strong">Keen Zhou</font></a> All right reserved.
+				</p>
+			</div>
+		</div>
+		<script src="{{ STATIC_URL }}js/jquery-1.11.2.min.js"></script>
+        <script src="{{ STATIC_URL }}js/bootstrap.js"></script>
+		<script src="{{ STATIC_URL }}highlight.js/highlight.pack.js"></script>
+		<script src="{{ STATIC_URL }}js/jquery.imagebox.js"></script>
+		<script src="{{ STATIC_URL }}js/jquery.cookie.js"></script>
+        <script src="{{ STATIC_URL }}js/book.js"></script>
+        <script src="{{ STATIC_URL }}js/duoshuo.js"></script>
+        <script src="{{ STATIC_URL }}js/analytics.js"></script>
+	</body>
+</html>

@@ -1,0 +1,9 @@
+#!/bin/sh
+
+DBNAME="yzhou9071"
+USER="root"
+PASSWD="yzhou9071"
+mysql -u${USER} -p${PASSWD} -e"drop database ${DBNAME}"
+mysql -u${USER} -p${PASSWD} -e"create database if not exists ${DBNAME} character set utf8"
+
+python manage.py syncdb

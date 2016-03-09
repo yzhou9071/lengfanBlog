@@ -1,0 +1,61 @@
+{% extends "books/base.html" %}
+
+{% block title %} {{ block.super }}{% endblock%}
+
+{% block bookShow %}
+<div style="position:relative" id="photoHeader">
+	<img src="{{ STATIC_URL}}index_header_1.png" alt="冷饭博客" class="carousel-img-width">
+	<div class="photoShelter">
+		<h3>读书使人明智</h3>
+		<p>藏书共计：{{ totalBook }}本。</p>
+		<p>已读：{{ hasRead }}本，待读：{{ unRead }}本。</p>
+		<p>书山有路勤为径，学海无涯苦作舟。</p>
+	</div>
+</div>
+</br>
+{% endblock %}
+
+{% block bookContent %}
+<div class="row rowPanel">
+	{% for bookItem in bookDetail %}
+	<div class="col-lg-4 col-md-4 col-sm-6">
+		<div class="bookPanel">
+			<div class="bookPanelHeader">
+				{% if bookItem.bookState %}
+				<div class="bookPanelHeaderState" style="color:green;">已读</div>
+				{% else %}
+				<div class="bookPanelHeaderState" style="color:red;">待读</div>
+				{% endif %}
+				<div class="bookPanelHeaderName">{{ bookItem.bookName }}</div>
+			</div>
+			<br><br>
+			<div class="bookPanelDes">
+				<div class="bookPanelDesImg">
+					<img src="{{STATIC_URL}}books/book-{{ bookItem.bookTime|date:"YmdHis" }}.jpg" alt="封面">
+				</div>
+				<div class="bookPanelDesDetail">
+					<div class="rating rating-{{ bookItem.bookStar }}">
+						<i class="star-1">★</i>
+						<i class="star-2">★</i>
+						<i class="star-3">★</i>
+						<i class="star-4">★</i>
+						<i class="star-5">★</i>
+					</div>
+					<br>
+					<strong style="color:gray;">作者</strong><br>
+					<strong>{{ bookItem.bookAuthor }}</strong><br>
+					<strong style="color:gray;">出版社</strong><br>
+					<strong>{{ bookItem.bookProduct }}</strong><br>
+					<strong style="color:gray;">收藏时间</strong><br>
+					<strong>{{ bookItem.bookTime|date:"Y-m-d"}}</strong>
+				</div>
+			</div>
+			<br>
+			<div class="bookPanelContent">
+				<p>{{ bookItem.bookDes }}...<a href="{{ bookItem.bookHref }}">查看详情</a></p>
+			</div>
+		</div>
+	</div>
+	{% endfor %}
+</div>
+{% endblock %}

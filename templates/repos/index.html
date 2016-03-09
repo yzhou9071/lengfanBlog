@@ -1,0 +1,24 @@
+{% extends "repos/base.html" %}
+
+{% block title %} {{ block.super }}{% endblock%}
+
+{% block repoShow %}
+<div class="alert alert-info">
+	<h3>
+		冷饭博客
+	</h3>
+	<div>
+		<p>关注技术每一天</p>
+		<p>统计时间：2012/03/09 - 2015/06/07</p>
+		<p>博客总字数：980238，总访问量：2327633，总用户量：959201</p>
+	</div>
+</div>
+{% endblock %}
+
+{% block repoShare %}
+{% endblock %}
+
+{% block repoComment %}
+<div class="ds-thread" data-thread-key="repo_index_comment" data-title="关于冷饭" data-url="http://www.yzhou9071.com/repo/">
+</div>
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends "blog/base.html" %}
+
+{% block title %} {{ block.super }}{% endblock%}
+
+{% block blogCategory %}
+	<li><a href="/">首页（{{ totalNum }}）</a></li>
+{% for item in categories %}
+	<li><a href="{% url 'blog_category_archive' slug=item.slug %}">{{ item.title }}（{{ item.categoryID }}）</a></li>
+{% endfor %}
+{% endblock %}
+
+{% block blogHeader %}
+<div style="position:relative" id="photoHeader">
+	<img src="{{ STATIC_URL}}index_header_1.png" alt="冷饭博客" class="carousel-img-width">
+	<div class="photoShelter">
+		<h3>冷饭博客</h3>
+		<p>博客共计：{{ totalNum }}篇。</p>
+		<p>分类：
+		{% for item in categories %}
+		{{ item.title }}（{{ item.categoryID }}）;
+		{% endfor %}
+		</p>
+		<p>快乐编码，关注生活，分享技术。</p>
+	</div>
+</div>
+</br>
+{% endblock %}
+
+{% block blogContent %}
+<div class="posts-type">
+	<div data-type="tile">
+		<img class="img-tile" src="{{ STATIC_URL }}tile.png">
+	</div>
+	<div data-type="list">
+		<img class="img-list" src="{{ STATIC_URL }}list.png">
+	</div>
+</div>
+<ul class="posts-list">
+{% for item in articles %}
+	<li class="post">
+	<a href="{% url 'blog_article_single' slug=item.slug %}" title="{{ item.title }}">
+		<div class="shortcut">
+			<p>{{ item.content_markdown | slice:"87"}}...</p>
+		</div>
+		<div class="post-title post-title-width">{{ item.title }}</div>
+		<div class="post-extra">
+			<div class="col-left">{{ item.publishTime|date:"Y-m-d" }}</div>
+		</div>
+		<div class="post-extra-right">
+			<div class="col-right">阅读数：{{ item.pv }}</div>
+		</div>
+	</a>
+	</li>
+{% endfor %}
+	<div>
+		<ul class="pagination pagination-small pagination-centered">
+			{% if articles.has_previous %}
+			<li><a href="?page={{ articles.previous_page_number }}">Previous</a></li>
+			{% else %}
+			<li class="disabled"><span>上一页</span></li>
+			{% endif %}
+
+			<li class="active"><span>{{ articles.number }}</span></li>
+
+			{% if articles.has_next %}
+			<li><a href="?page={{ articles.next_page_number }}">Next</a></li>
+			{% else %}
+			<li class="disabled"><span>下一页</span></li>
+			{% endif %}
+		</span>
+	</div>
+</ul>
+{% endblock %}

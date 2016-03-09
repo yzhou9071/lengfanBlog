@@ -1,0 +1,111 @@
+{% extends "about/base.html" %}
+
+{% block title %} {{ block.super }}{% endblock%}
+
+{% block aboutAuthor %}
+<div class="panel panel-primary aboutAuthor">
+	<div class="panel-heading">
+		<h3 class="panel-title">联系方式</h3>
+	</div>
+	<div class="panel-body aboutAuthorInfo">
+		<img src="{{ STATIC_URL}}about/aboutAuthor.jpg" alt="冷饭头像" class="aboutAuthorPhoto">
+		<div class="aboutAuthorDes">
+			<p><strong>冷饭</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;男</p>
+			<p>山东烟台</p>
+			<p>1990年7月1日</p>
+			<p>立志编好码的快乐码农。</p>
+			<p>以梦为马，诗酒趁年华的行者。</p>
+		</div>
+		<br>
+		<div class="aboutAuthorContact">
+			<a href="http://weibo.com/yz9071" target="_Blank"><img src="{{ STATIC_URL}}about/sina.jpg" alt="微博">微博</a>
+			<a href="http://sighttp.qq.com/authd?IDKEY=c7ad6b31a6176e3b90c442eaf67e45b74064157fdd06695a" target="_Blank"><img src="{{ STATIC_URL}}about/qq.jpg" alt="QQ">QQ  </a>
+			<a href="mailto:yzhou9071@163.com" target="_Blank"><img src="{{ STATIC_URL}}about/mail.jpg" alt="邮件">邮件</a>
+			<!--
+			<a href="www.weibo.com/yz9071" target="_Blank"><img src="{{ STATIC_URL}}about/rss.jpg" alt="订阅">订阅</a>
+			<a href="https://github.com/yzhou9071" target="_Blank"><img src="{{ STATIC_URL}}about/github.jpg" alt="Github">GitHub</a>
+			<a href="www.weibo.com/yz9071" target="_Blank"><img src="{{ STATIC_URL}}about/wechat.jpg" alt="微信">微信</a>
+			<a href="www.weibo.com/yz9071" target="_Blank"><img src="{{ STATIC_URL}}about/linkin.jpg" alt="领英">领英</a>
+			-->
+		</div>
+		<br>
+		<div class="aboutAuthorPlatform">
+			<img src="{{ STATIC_URL}}about/authorInfo.jpg" alt="博主名片"><br>
+			<strong>博主名片</strong>
+		</div>
+		<div class="aboutAuthorPlatform">
+			<img src="{{ STATIC_URL}}about/lengfanblog.jpg" alt="公众平台"><br>
+			<strong>公众平台</strong>
+		</div>
+		<div class="aboutAuthorPlatform">
+			<img src="{{ STATIC_URL}}about/appDownload.jpg" alt="app下载"><br>
+			<strong>app 下载</strong>
+		</div>
+		<!--
+		<div class="aboutAuthorPlatform">
+			<img src="{{ STATIC_URL}}about/authorInfo.jpg" alt="博主名片" class="col-lg-4 col-md-4 col-sm-4">
+			<img src="{{ STATIC_URL}}about/lengfanblog.jpg" alt="公众平台" class="col-lg-4 col-md-4 col-sm-4">
+			<img src="{{ STATIC_URL}}about/appDownload.jpg" alt="app下载" class="col-lg-4 col-md-4 col-sm-4">
+		</div>
+		-->
+		<!--
+		<div>
+			<strong class="col-lg-4 col-md-4 col-sm-4 aboutAuthorPlatformFont">博主名片</strong>
+			<strong class="col-lg-4 col-md-4 col-sm-4 aboutAuthorPlatformFont">公众平台</strong>
+			<strong class="col-lg-4 col-md-4 col-sm-4 aboutAuthorPlatformFont">app 下载</strong>
+		</div>
+		-->
+	</div>
+</div>
+{% endblock %}
+
+{% block aboutDetail %}
+<div class="panel panel-primary aboutDetail">
+	<div class="panel-heading">
+		<h3 class="panel-title">关于冷饭</h3>
+	</div>
+	<div class="panel-body">
+		<div class="timeline">
+			{% for detailItem in aboutAuthorDetail %}
+			<div class="timeline-block"> 
+				<div class="timeline-img"> 
+					<img src="{{ STATIC_URL}}about/timepoint.jpg" alt="时间点"> 
+				</div> 
+				<div class="timeline-date"> 
+					{{ detailItem.authorDetailTime|date:"Y-m-d" }}
+				</div> 
+				<div class="timeline-content"> 
+				{% if detailItem.authorDetailFlag %}
+					<a href="{{ detailItem.authorDetailHref}}" target="_Blank">{{ detailItem.authorDetailDes }}</a>
+				{% else %}
+					{{ detailItem.authorDetailDes }}
+				{% endif %}
+				</div> 
+			</div> 
+			{% endfor %}
+		</div> 
+	</div>
+</div>
+{% endblock %}
+
+{% block aboutDownload %}
+<div class="panel panel-primary aboutDownload">
+	<div class="panel-heading">
+		<h3 class="panel-title">相关下载</h3>
+	</div>
+	<div class="panel-body">
+	{% for downloadItem in aboutDownload %}
+	<a href="{{ downloadItem.downloadHref }}" target="_Blank" onClick='updateAboutDetailNum("{{ downloadItem.downloadTitle }}")'>
+		<strong class="aboutDownloadTimeFont">{{ downloadItem.downloadTime|date:"Y-m-d" }}&nbsp;&nbsp;</strong>
+		<strong class="aboutDownloadTitleFont">{{ downloadItem.downloadTitle }}</strong>
+		<strong class="aboutDownloadPvFont">下载:{{ downloadItem.downloadNum }}</strong>
+	</a><br>
+	{% endfor %}
+	</div>
+</div>
+{% endblock %}
+
+{% block aboutComment %}
+<div class="ds-thread" data-thread-key="about_index_comment" data-title="关于冷饭" data-url="http://www.yzhou9071.com/about/">
+</div>
+{% endblock %}
